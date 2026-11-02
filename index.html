@@ -211,36 +211,7 @@
   </div>
 </section>
 
-<!-- Скрипт: вставить перед </body> или вынести в slider.js -->
-<script>
-document.querySelectorAll('#hero-slider').forEach(root => {
-  const track = root.querySelector('[data-track]');
-  const dots = [...root.querySelectorAll('[data-dot]')];
-  let current = 0, paused = false;
 
-  const go = n => {
-    current = (n + dots.length) % dots.length;
-    track.scrollTo({ left: current * track.clientWidth, behavior: 'smooth' });
-  };
-  const sync = () => {
-    current = Math.round(track.scrollLeft / track.clientWidth);
-    dots.forEach((d, i) => d.setAttribute('aria-current', i === current));
-  };
-
-  track.addEventListener('scroll', sync, { passive: true });
-  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
-  root.querySelector('[data-prev]').onclick = () => go(current - 1);
-  root.querySelector('[data-next]').onclick = () => go(current + 1);
-
-  ['mouseenter', 'focusin', 'touchstart'].forEach(e => root.addEventListener(e, () => paused = true, { passive: true }));
-  ['mouseleave', 'focusout'].forEach(e => root.addEventListener(e, () => paused = false));
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    setInterval(() => { if (!paused && !document.hidden) go(current + 1); }, 6000);
-  }
-  sync();
-});
-</script>
-<!-- ===== КОНЕЦ ВСТАВКИ ===== -->
 
 
         
@@ -1198,5 +1169,38 @@ document.querySelectorAll('#hero-slider').forEach(root => {
           "
         ></div></template
     ></next-route-announcer>
+
+
+<!-- Скрипт: вставить перед </body> или вынести в slider.js -->
+<script>
+document.querySelectorAll('#hero-slider').forEach(root => {
+  const track = root.querySelector('[data-track]');
+  const dots = [...root.querySelectorAll('[data-dot]')];
+  let current = 0, paused = false;
+
+  const go = n => {
+    current = (n + dots.length) % dots.length;
+    track.scrollTo({ left: current * track.clientWidth, behavior: 'smooth' });
+  };
+  const sync = () => {
+    current = Math.round(track.scrollLeft / track.clientWidth);
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === current));
+  };
+
+  track.addEventListener('scroll', sync, { passive: true });
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+  root.querySelector('[data-prev]').onclick = () => go(current - 1);
+  root.querySelector('[data-next]').onclick = () => go(current + 1);
+
+  ['mouseenter', 'focusin', 'touchstart'].forEach(e => root.addEventListener(e, () => paused = true, { passive: true }));
+  ['mouseleave', 'focusout'].forEach(e => root.addEventListener(e, () => paused = false));
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => { if (!paused && !document.hidden) go(current + 1); }, 6000);
+  }
+  sync();
+});
+</script>
+<!-- ===== КОНЕЦ ВСТАВКИ ===== -->
+    
   </body>
 </html>
