@@ -148,38 +148,102 @@
     </header>
     <main id="content" class="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
       <div class="space-y-12">
-        <section
-          class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 px-5 py-10 text-white sm:px-10 sm:py-14"
-        >
-          <div class="relative max-w-2xl">
-            <p
-              class="text-sm font-medium uppercase tracking-wider text-white/80"
-            >
-              Многопредметная олимпиада
-            </p>
-            <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-5xl">
-              «Юные таланты»
-            </h1>
-            <p class="mt-4 text-base text-white/90 sm:text-lg">
-              Олимпиады для школьников по двадцати предметам. Один аккаунт — для
-              всех предметов и сезонов: заявки, задания, результаты и дипломы в
-              личном кабинете.
-            </p>
-            <div class="mt-6">
-              <div class="flex flex-col gap-3 sm:flex-row">
-                <a
-                  class="inline-flex min-h-11 items-center justify-center rounded-md bg-white px-5 text-sm font-semibold text-brand-900 hover:bg-brand-50"
-                  href="/register"
-                  >Зарегистрироваться</a
-                ><a
-                  class="inline-flex min-h-11 items-center justify-center rounded-md border border-white/60 px-5 text-sm font-semibold text-white hover:bg-white/10"
-                  href="/login"
-                  >Войти в личный кабинет</a
-                >
-              </div>
-            </div>
+
+        
+       <!-- ===== ВСТАВИТЬ С ЭТОГО МЕСТА: заменяет текущий верхний блок (заголовок + две кнопки) ===== -->
+<section id="hero-slider" aria-roledescription="carousel" aria-label="Главное об олимпиаде"
+         class="relative overflow-hidden">
+
+  <div data-track class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
+    <!-- Слайд 1: прежний hero -->
+    <article aria-roledescription="slide" aria-label="1 из 3"
+             class="flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-indigo-700 to-violet-800 px-6 py-14 md:min-h-[32rem] md:px-16">
+      <div class="mx-auto w-full max-w-6xl">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-wide text-indigo-200">Многопредметная олимпиада</p>
+          <h1 class="mt-3 text-4xl font-extrabold leading-tight md:text-6xl">«Юные таланты»</h1>
+          <p class="mt-4 text-lg text-indigo-100">Олимпиады для школьников по двадцати предметам. Один аккаунт для всех предметов и сезонов: заявки, задания, результаты и дипломы в личном кабинете.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/register" class="rounded-xl bg-white px-6 py-3 font-semibold text-indigo-700">Зарегистрироваться</a>
+            <a href="/login" class="rounded-xl border border-white/60 px-6 py-3 font-semibold hover:bg-white/10">Войти в личный кабинет</a>
           </div>
-        </section>
+        </div>
+      </div>
+    </article>
+
+    <!-- Слайд 2: льготы -->
+    <article aria-roledescription="slide" aria-label="2 из 3"
+             class="flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-emerald-700 to-teal-800 px-6 py-14 md:min-h-[32rem] md:px-16">
+      <div class="mx-auto w-full max-w-6xl">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-wide text-emerald-200">Льготы участникам</p>
+          <h2 class="mt-3 text-4xl font-extrabold leading-tight md:text-5xl">Преимущества при поступлении</h2>
+          <p class="mt-4 text-lg text-emerald-100">Какие льготы дают дипломы победителей и призёров.</p>
+          <a href="/benefits" class="mt-8 inline-block rounded-xl bg-white px-6 py-3 font-semibold text-emerald-700">Узнать подробнее</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Слайд 3: график -->
+    <article aria-roledescription="slide" aria-label="3 из 3"
+             class="flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-rose-700 to-orange-700 px-6 py-14 md:min-h-[32rem] md:px-16">
+      <div class="mx-auto w-full max-w-6xl">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-wide text-rose-100">График олимпиад</p>
+          <h2 class="mt-3 text-4xl font-extrabold leading-tight md:text-5xl">Сроки заявок и этапов</h2>
+          <p class="mt-4 text-lg text-rose-100">Отборочный и заключительный этапы, места проведения.</p>
+          <a href="/schedule" class="mt-8 inline-block rounded-xl bg-white px-6 py-3 font-semibold text-rose-700">Открыть график</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <button data-prev aria-label="Предыдущий слайд"
+          class="absolute left-3 top-1/2 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-black/30 text-2xl backdrop-blur hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-white md:grid">‹</button>
+  <button data-next aria-label="Следующий слайд"
+          class="absolute right-3 top-1/2 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-black/30 text-2xl backdrop-blur hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-white md:grid">›</button>
+
+  <div class="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+    <button data-dot aria-label="Слайд 1" class="h-2.5 w-2.5 rounded-full bg-white/40 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-white"></button>
+    <button data-dot aria-label="Слайд 2" class="h-2.5 w-2.5 rounded-full bg-white/40 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-white"></button>
+    <button data-dot aria-label="Слайд 3" class="h-2.5 w-2.5 rounded-full bg-white/40 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-white"></button>
+  </div>
+</section>
+
+<!-- Скрипт: вставить перед </body> или вынести в slider.js -->
+<script>
+document.querySelectorAll('#hero-slider').forEach(root => {
+  const track = root.querySelector('[data-track]');
+  const dots = [...root.querySelectorAll('[data-dot]')];
+  let current = 0, paused = false;
+
+  const go = n => {
+    current = (n + dots.length) % dots.length;
+    track.scrollTo({ left: current * track.clientWidth, behavior: 'smooth' });
+  };
+  const sync = () => {
+    current = Math.round(track.scrollLeft / track.clientWidth);
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === current));
+  };
+
+  track.addEventListener('scroll', sync, { passive: true });
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+  root.querySelector('[data-prev]').onclick = () => go(current - 1);
+  root.querySelector('[data-next]').onclick = () => go(current + 1);
+
+  ['mouseenter', 'focusin', 'touchstart'].forEach(e => root.addEventListener(e, () => paused = true, { passive: true }));
+  ['mouseleave', 'focusout'].forEach(e => root.addEventListener(e, () => paused = false));
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => { if (!paused && !document.hidden) go(current + 1); }, 6000);
+  }
+  sync();
+});
+</script>
+<!-- ===== КОНЕЦ ВСТАВКИ ===== -->
+
+
+        
         <section aria-labelledby="sections-title">
           <h2 id="sections-title" class="sr-only">Ключевые разделы</h2>
           <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
