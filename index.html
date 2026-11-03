@@ -150,7 +150,7 @@
 
     <!-- Слайд 1: прежний hero -->
     <article aria-roledescription="slide" aria-label="1 из 3"
-             class="flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-indigo-700 to-violet-800 px-6 py-14 md:min-h-[32rem] md:px-16">
+             class="text-white flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-indigo-700 to-violet-800 px-6 py-14 md:min-h-[32rem] md:px-16">
       <div class="mx-auto w-full max-w-6xl">
         <div class="max-w-2xl">
           <p class="text-sm font-semibold uppercase tracking-wide text-indigo-200">Многопредметная олимпиада</p>
@@ -166,7 +166,7 @@
 
     <!-- Слайд 2: льготы -->
     <article aria-roledescription="slide" aria-label="2 из 3"
-             class="flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-emerald-700 to-teal-800 px-6 py-14 md:min-h-[32rem] md:px-16">
+             class="text-white flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-emerald-700 to-teal-800 px-6 py-14 md:min-h-[32rem] md:px-16">
       <div class="mx-auto w-full max-w-6xl">
         <div class="max-w-2xl">
           <p class="text-sm font-semibold uppercase tracking-wide text-emerald-200">Льготы участникам</p>
@@ -179,7 +179,7 @@
 
     <!-- Слайд 3: график -->
     <article aria-roledescription="slide" aria-label="3 из 3"
-             class="flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-rose-700 to-orange-700 px-6 py-14 md:min-h-[32rem] md:px-16">
+             class="text-white flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-rose-700 to-orange-700 px-6 py-14 md:min-h-[32rem] md:px-16">
       <div class="mx-auto w-full max-w-6xl">
         <div class="max-w-2xl">
           <p class="text-sm font-semibold uppercase tracking-wide text-rose-100">График олимпиад</p>
@@ -1252,8 +1252,10 @@
 (() => {
   const track = document.querySelector('[data-reviews]');
   const box = document.querySelector('[data-dots]');
+  const DELAY = 5000; // пауза между переключениями, мс
   const perView = () => (innerWidth >= 768 ? 3 : 1);
-  let pages = 1;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let pages = 1, current = 0, timer = null, paused = false, visible = true;
 
   function build() {
     pages = Math.max(1, Math.ceil(track.children.length / perView()));
@@ -1266,21 +1268,52 @@
 
   function update() {
     const max = track.scrollWidth - track.clientWidth;
-    const i = max > 0 ? Math.round((track.scrollLeft / max) * (pages - 1)) : 0;
+    current = max > 0 ? Math.round((track.scrollLeft / max) * (pages - 1)) : 0;
     box.querySelectorAll('[data-dot]').forEach((b, n) =>
-      b.setAttribute('aria-current', n === i ? 'true' : 'false'));
+      b.setAttribute('aria-current', n === current ? 'true' : 'false'));
   }
+
+  function goTo(i) {
+    const card = track.children[i * perView()];
+    if (!card) return;
+    track.scrollTo({ left: card.offsetLeft - track.children[0].offsetLeft, behavior: 'smooth' });
+  }
+
+  // автопрокрутка
+  function tick() {
+    if (paused || !visible || document.hidden || pages < 2) return;
+    goTo((current + 1) % pages); // после последней страницы возвращаемся к первой
+  }
+  function start() {
+    if (reduceMotion || timer) return;
+    timer = setInterval(tick, DELAY);
+  }
+  function restart() { clearInterval(timer); timer = null; start(); }
+
+  // пауза, пока пользователь взаимодействует с лентой
+  const pause = () => { paused = true; };
+  const resume = () => { paused = false; restart(); };
+  track.addEventListener('pointerenter', pause);
+  track.addEventListener('pointerleave', resume);
+  track.addEventListener('focusin', pause);
+  track.addEventListener('focusout', resume);
+  track.addEventListener('touchstart', pause, { passive: true });
+  track.addEventListener('touchend', resume, { passive: true });
+
+  // не крутим, пока секция вне экрана
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(track);
 
   box.addEventListener('click', (e) => {
     const b = e.target.closest('[data-dot]');
     if (!b) return;
-    const card = track.children[Number(b.dataset.dot) * perView()];
-    track.scrollTo({ left: card.offsetLeft - track.children[0].offsetLeft, behavior: 'smooth' });
+    goTo(Number(b.dataset.dot));
+    restart(); // после клика отсчитываем паузу заново
   });
 
   track.addEventListener('scroll', update, { passive: true });
   addEventListener('resize', build);
   build();
+  start();
 })();
 </script>
 
