@@ -1101,40 +1101,62 @@
         
         
 
-<section class="bg-[#f7f1e5] py-12 md:py-16" aria-labelledby="numbers-title">
+
+<section class="bg-white mx-auto max-w-6xl px-12 py-12" aria-labelledby="numbers-title">
   <div class="mx-auto max-w-6xl px-4">
     <h2 id="numbers-title" class="text-2xl font-bold text-neutral-900 md:text-3xl">
       «Юные таланты» в цифрах
     </h2>
 
-    <dl class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-      <div class="flex flex-col-reverse rounded-2xl border border-[#e8dfcc] bg-white p-5 last:col-span-2 sm:last:col-span-1">
-        <dt class="mt-1 text-sm text-neutral-600">класс</dt>
-        <dd class="whitespace-nowrap text-4xl font-extrabold tabular-nums text-[#ce1531] md:text-5xl">7+</dd>
-      </div>
+<dl class="mt-10 grid grid-cols-2 gap-y-10 md:grid-cols-4 md:divide-x md:divide-slate-200">
+  <div class="flex flex-col gap-2 md:px-8 md:first:pl-0">
+    <dt class="max-w-[18ch] text-sm text-slate-500">участников в прошлом сезоне</dt>
+    <dd data-count="9800"
+        class="order-first bg-linear-to-br from-blue-900 to-sky-500 bg-clip-text text-5xl font-bold leading-none text-transparent md:text-6xl">
+      9800
+    </dd>
+  </div>
 
-      <div class="flex flex-col-reverse rounded-2xl border border-[#e8dfcc] bg-white p-5">
-        <dt class="mt-1 text-sm text-neutral-600">профилей</dt>
-        <dd class="whitespace-nowrap text-4xl font-extrabold tabular-nums text-[#ce1531] md:text-5xl">26</dd>
-      </div>
+  <div class="flex flex-col gap-2 md:px-8">
+    <dt class="max-w-[18ch] text-sm text-slate-500">дипломантов в прошлом сезоне</dt>
+    <dd data-count="120"
+        class="order-first bg-linear-to-br from-blue-900 to-sky-500 bg-clip-text text-5xl font-bold leading-none text-transparent md:text-6xl">
+      120
+    </dd>
+  </div>
 
-      <div class="flex flex-col-reverse rounded-2xl border border-[#e8dfcc] bg-white p-5">
-        <dt class="mt-1 text-sm text-neutral-600">год проведения первой олимпиады</dt>
-        <dd class="whitespace-nowrap text-4xl font-extrabold tabular-nums text-[#ce1531] md:text-5xl">1998</dd>
-      </div>
+  <div class="flex flex-col gap-2 md:px-8">
+    <dt class="max-w-[18ch] text-sm text-slate-500">профилей олимпиад</dt>
+    <dd class="order-first bg-linear-to-br from-blue-900 to-sky-500 bg-clip-text text-5xl font-bold leading-none text-transparent md:text-6xl">20</dd>
+  </div>
 
-      <div class="flex flex-col-reverse rounded-2xl border border-[#e8dfcc] bg-white p-5">
-        <dt class="mt-1 text-sm text-neutral-600">участников в прошлом сезоне</dt>
-        <dd class="whitespace-nowrap text-4xl font-extrabold tabular-nums text-[#ce1531] md:text-5xl">144&nbsp;000</dd>
-      </div>
-
-      <div class="flex flex-col-reverse rounded-2xl border border-[#e8dfcc] bg-white p-5">
-        <dt class="mt-1 text-sm text-neutral-600">дипломантов в прошлом сезоне</dt>
-        <dd class="whitespace-nowrap text-4xl font-extrabold tabular-nums text-[#ce1531] md:text-5xl">3&nbsp;900</dd>
-      </div>
-    </dl>
+  <div class="flex flex-col gap-2 md:px-8">
+    <dt class="max-w-[18ch] text-sm text-slate-500">первая олимпиада</dt>
+    <dd class="order-first bg-linear-to-br from-blue-900 to-sky-500 bg-clip-text text-5xl font-bold leading-none text-transparent md:text-6xl">2008</dd>
+  </div>
+</dl>
   </div>
 </section>
+
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const el = e.target, end = +el.dataset.count, t0 = performance.now(), dur = 1200;
+      const tick = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString('ru-RU');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      io.unobserve(el);
+    });
+  }, { threshold: .4 });
+  document.querySelectorAll('[data-count]').forEach((el) => io.observe(el));
+</script>
+
+        
 
 <section class="bg-white py-12 md:py-16" aria-labelledby="benefits-title">
   <div class="mx-auto max-w-6xl px-4">
@@ -1174,7 +1196,7 @@
 
 
 
-<section class="py-12">
+<section class="py-6">
   <div class="mx-auto max-w-6xl px-4">
     <h2 class="text-2xl font-bold md:text-3xl">Отзывы участников</h2>
 
@@ -1320,53 +1342,38 @@
 
 
 
-
-<section class="bg-white py-12 md:py-16" aria-labelledby="news-title">
-  <div class="mx-auto max-w-6xl px-4">
-    <div class="flex items-end justify-between gap-4">
-      <h2 id="news-title" class="text-2xl font-bold text-neutral-900 md:text-3xl">Новости</h2>
-      <a href="/news" class="text-sm font-semibold text-[#ce1531] hover:underline md:text-base">Все новости →</a>
-    </div>
-
-    <div class="mt-8 grid gap-6 md:grid-cols-3">
-      <article class="group overflow-hidden border border-neutral-200 bg-white transition hover:shadow-lg">
-        <a href="#" class="block focus-visible:outline-2 focus-visible:outline-[#ce1531]">
-          <img src="images/news_1.jpg" alt="" width="640" height="360" loading="lazy"
-               class="aspect-video w-full bg-neutral-200 object-cover">
-          <div class="p-5">
-            <h3 class="text-lg font-semibold leading-snug text-neutral-900 group-hover:text-[#ce1531]">
-              Три олимпиады Пермского университета вошли в федеральный перечень олимпиад школьников
-            </h3>
-          </div>
-        </a>
-      </article>
-
-      <article class="group overflow-hidden border border-neutral-200 bg-white transition hover:shadow-lg">
-        <a href="#" class="block focus-visible:outline-2 focus-visible:outline-[#ce1531]">
-          <img src="images/news_2.jpg" alt="" width="640" height="360" loading="lazy"
-               class="aspect-video w-full bg-neutral-200 object-cover">
-          <div class="p-5">
-            <h3 class="text-lg font-semibold leading-snug text-neutral-900 group-hover:text-[#ce1531]">
-             Научная группа Физико-математического института получила грант РНФ
-            </h3>
-          </div>
-        </a>
-      </article>
-
-      <article class="group overflow-hidden border border-neutral-200 bg-white transition hover:shadow-lg">
-        <a href="#" class="block focus-visible:outline-2 focus-visible:outline-[#ce1531]">
-          <img src="images/news_3.jpg" alt="" width="640" height="360" loading="lazy"
-               class="aspect-video w-full bg-neutral-200 object-cover">
-          <div class="p-5">
-            <h3 class="text-lg font-semibold leading-snug text-neutral-900 group-hover:text-[#ce1531]">
-              Магистранты Краевой инженерной школы рассказали, как совмещают учёбу с работой над высокотехнологичными проектами
-            </h3>
-          </div>
-        </a>
-      </article>
-    </div>
+<section class="mx-auto max-w-6xl px-4 py-16">
+  <div class="flex items-end justify-between gap-4">
+    <h2 class="text-3xl font-bold tracking-tight text-slate-900">Новости</h2>
+    <a href="/news" class="text-sm font-semibold text-[#ce1531] hover:underline md:text-base">Все новости →</a>
   </div>
-</section>        
+
+  <div class="mt-8 grid gap-8 md:grid-cols-[1.4fr_1fr] md:grid-rows-2">
+    <!-- крупная -->
+    <a href="#" class="group flex flex-col gap-3 md:row-span-2">
+      <div class="aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100">
+        <img src="./images/news_1.jpg" alt="" class="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      </div>
+      <div class="flex items-center gap-3 text-sm text-slate-500">
+        <time datetime="2026-11-01">1 ноября 2026</time>
+      </div>
+      <h3 class="text-2xl font-semibold leading-snug text-slate-900 group-hover:text-blue-700">
+        Три олимпиады Пермского университета вошли в федеральный перечень олимпиад школьников
+      </h3>
+    </a>
+
+    <!-- компактные (повторить) -->
+    <a href="#" class="group flex flex-col gap-3">
+      <div class="aspect-[16/9] overflow-hidden rounded-2xl bg-slate-100">
+        <img src="./images/news_2.jpg" alt="" class="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      </div>
+      <time class="text-sm text-slate-500" datetime="2026-10-20">20 октября 2026</time>
+      <h3 class="text-lg font-semibold leading-snug text-slate-900 group-hover:text-blue-700">
+        Научная группа Физико-математического института получила грант РНФ
+      </h3>
+    </a>
+  </div>
+</section> 
         
       </div>
       <!--$--><!--/$-->
