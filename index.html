@@ -144,13 +144,22 @@
 
         
 <section id="hero-slider" aria-roledescription="carousel" aria-label="Главное об олимпиаде"
-         class="relative overflow-hidden">
+         class="relative overflow-hidden rounded-2xl">
 
   <div data-track class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
-    <!-- Слайд 1: прежний hero -->
+    <!-- Слайд 1: прежний hero (индиго / фиолетовый) -->
     <article aria-roledescription="slide" aria-label="1 из 3"
-             class="text-white flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-indigo-700 to-violet-800 px-6 py-14 md:min-h-[32rem] md:px-16">
+             class="relative isolate flex min-h-[26rem] min-w-full snap-center items-center overflow-hidden bg-gradient-to-br from-indigo-700 to-violet-800 px-6 py-14 text-white md:min-h-[32rem] md:px-16">
+      <!-- фото: справа, плавно растворяется в цвет слайда -->
+      <img src="./images/hero_2.jpg" alt="" fetchpriority="high" decoding="async" onerror="this.remove()"
+           class="absolute inset-y-0 right-0 -z-20 h-full w-full object-cover opacity-25
+                  md:w-3/5 md:opacity-100
+                  md:[-webkit-mask-image:linear-gradient(to_right,transparent,black_55%)]
+                  md:[mask-image:linear-gradient(to_right,transparent,black_55%)]" />
+      <!-- цветовая тень поверх фото -->
+      <div class="absolute inset-0 -z-10 bg-linear-to-r from-indigo-900/90 via-indigo-800/40 to-violet-700/20"></div>
+
       <div class="mx-auto w-full max-w-6xl">
         <div class="max-w-2xl">
           <p class="text-sm font-semibold uppercase tracking-wide text-indigo-200">Многопредметная олимпиада</p>
@@ -164,9 +173,16 @@
       </div>
     </article>
 
-    <!-- Слайд 2: льготы -->
+    <!-- Слайд 2: льготы (изумрудный / бирюзовый) -->
     <article aria-roledescription="slide" aria-label="2 из 3"
-             class="text-white flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-emerald-700 to-teal-800 px-6 py-14 md:min-h-[32rem] md:px-16">
+             class="relative isolate flex min-h-[26rem] min-w-full snap-center items-center overflow-hidden bg-gradient-to-br from-emerald-700 to-teal-800 px-6 py-14 text-white md:min-h-[32rem] md:px-16">
+      <img src="./images/hero_1.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()"
+           class="absolute inset-y-0 right-0 -z-20 h-full w-full object-cover opacity-25
+                  md:w-3/5 md:opacity-100
+                  md:[-webkit-mask-image:linear-gradient(to_right,transparent,black_55%)]
+                  md:[mask-image:linear-gradient(to_right,transparent,black_55%)]" />
+      <div class="absolute inset-0 -z-10 bg-linear-to-r from-emerald-900/90 via-emerald-800/40 to-teal-700/20"></div>
+
       <div class="mx-auto w-full max-w-6xl">
         <div class="max-w-2xl">
           <p class="text-sm font-semibold uppercase tracking-wide text-emerald-200">Льготы участникам</p>
@@ -177,9 +193,16 @@
       </div>
     </article>
 
-    <!-- Слайд 3: график -->
+    <!-- Слайд 3: график (розовый / оранжевый) -->
     <article aria-roledescription="slide" aria-label="3 из 3"
-             class="text-white flex min-h-[26rem] min-w-full snap-center items-center bg-gradient-to-br from-rose-700 to-orange-700 px-6 py-14 md:min-h-[32rem] md:px-16">
+             class="relative isolate flex min-h-[26rem] min-w-full snap-center items-center overflow-hidden bg-gradient-to-br from-rose-700 to-orange-700 px-6 py-14 text-white md:min-h-[32rem] md:px-16">
+      <img src="./images/hero_3.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()"
+           class="absolute inset-y-0 right-0 -z-20 h-full w-full object-cover opacity-25
+                  md:w-3/5 md:opacity-100
+                  md:[-webkit-mask-image:linear-gradient(to_right,transparent,black_55%)]
+                  md:[mask-image:linear-gradient(to_right,transparent,black_55%)]" />
+      <div class="absolute inset-0 -z-10 bg-linear-to-r from-rose-900/90 via-rose-800/40 to-orange-700/20"></div>
+
       <div class="mx-auto w-full max-w-6xl">
         <div class="max-w-2xl">
           <p class="text-sm font-semibold uppercase tracking-wide text-rose-100">График олимпиад</p>
@@ -192,16 +215,16 @@
   </div>
 
   <button data-prev aria-label="Предыдущий слайд"
-          class="absolute left-3 top-1/2 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-black/30 text-2xl backdrop-blur hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-white md:grid">‹</button>
+          class="absolute left-3 top-1/2 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-black/30 text-2xl text-white backdrop-blur hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-white md:grid">‹</button>
   <button data-next aria-label="Следующий слайд"
-          class="absolute right-3 top-1/2 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-black/30 text-2xl backdrop-blur hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-white md:grid">›</button>
+          class="absolute right-3 top-1/2 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-black/30 text-2xl text-white backdrop-blur hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-white md:grid">›</button>
 
   <div class="absolute inset-x-0 bottom-4 flex justify-center gap-2">
     <button data-dot aria-label="Слайд 1" class="h-2.5 w-2.5 rounded-full bg-white/40 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-white"></button>
     <button data-dot aria-label="Слайд 2" class="h-2.5 w-2.5 rounded-full bg-white/40 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-white"></button>
     <button data-dot aria-label="Слайд 3" class="h-2.5 w-2.5 rounded-full bg-white/40 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-white"></button>
   </div>
-</section>
+</section>    
 
 
 
